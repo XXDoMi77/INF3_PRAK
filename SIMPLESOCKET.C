@@ -154,10 +154,10 @@ void TCPserver::run(){
 
 	while(1)
 	{
-		//clear buffer, fill it with '\0'
+		//clear buffer, fill it with '_'
 		for (int i = 0; i < maxDataSizeRecv_; i++)
 		{
-			dataRecv_[i] = '\0';
+			dataRecv_[i] = '_';
 		}
 		read(clintConnt_,dataRecv_, (size_t)maxDataSizeRecv_);
 		output = response(string(dataRecv_));
