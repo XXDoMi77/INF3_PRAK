@@ -50,7 +50,7 @@ bool TCPclient::conn(string address , int port){
 			perror("Could not create socket");
 		}
 
-		cout<<"Socket created\n";
+		//cout<<"Socket created\n";
 	}else { /* OK , nothing */ }
 
 	//setup address structure
@@ -62,7 +62,7 @@ bool TCPclient::conn(string address , int port){
 		if ( (he = gethostbyname( address.c_str() ) ) == NULL){
 			//gethostbyname failed
 			herror("gethostbyname");
-			cout<<"Failed to resolve hostname\n";
+			//cout<<"Failed to resolve hostname\n";
 
 			return false;
 		}
@@ -74,7 +74,7 @@ bool TCPclient::conn(string address , int port){
 			//strcpy(ip , inet_ntoa(*addr_list[i]) );
 			server.sin_addr = *addr_list[i];
 
-			cout<<address<<" resolved to "<<inet_ntoa(*addr_list[i])<<endl;
+			//cout<<address<<" resolved to "<<inet_ntoa(*addr_list[i])<<endl;
 
 			break;
 		}
@@ -91,7 +91,7 @@ bool TCPclient::conn(string address , int port){
 		return 1;
 	}
 
-	cout<<"Connected\n";
+	//cout<<"Connected\n";
 	return true;
 }
 
@@ -164,7 +164,7 @@ void TCPserver::run(){
 		dataSend_ = output.c_str();
 		write(clintConnt_, dataSend_, strlen(dataSend_)+1);
 		if(output.compare(0,6,"BYEBYE") == 0){
-			cout << "asked to close server\n";
+			//cout << "asked to close server\n";
 			break;
 		}
      }
@@ -180,15 +180,15 @@ TCPserver::~TCPserver(){
 string TCPserver::response(string incomingMsg){
 	string msg;
 	if(incomingMsg.compare(0,6,"BYEBYE") == 0){
-		cout << "asked to close server\n";
+		//cout << "asked to close server\n";
 		msg = string("BYEBYE"); // this return value
 		                        // will close server connections
 	}else{
 		msg = myResponse(incomingMsg);
 	}
 
-	cout << "received :" << incomingMsg << endl;
-	cout << "send back:" << msg << endl;
+	//cout << "received :" << incomingMsg << endl;
+	//cout << "send back:" << msg << endl;
 
 	return msg;
 }
